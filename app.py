@@ -20,6 +20,22 @@ from keras.models import load_model
 
 
 my_model=load_model('model.h5')
+WEBRTC_CLIENT_SETTINGS = ClientSettings(
+    rtc_configuration={"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]},
+    media_stream_constraints={"video": True, "audio": True},
+)
+
+if __name__ == "__main__":
+    logging.basicConfig(
+        format="[%(asctime)s] %(levelname)7s from %(name)s in %(filename)s:%(lineno)d: "
+        "%(message)s",
+        force=True,
+    )
+
+    logger.setLevel(level=logging.DEBUG)
+
+    st_webrtc_logger = logging.getLogger("streamlit_webrtc")
+    st_webrtc_logger.setLevel(logging.DEBUG)
 
 
 class VideoTransformer(VideoTransformerBase):

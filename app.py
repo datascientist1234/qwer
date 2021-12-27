@@ -58,7 +58,7 @@ class VideoTransformer(VideoTransformerBase):
             final_image = img_to_array(final_image)
             prediction = my_model.predict(final_image)[0]
             label=class_labels[prediction.argmax()]
-            cv2.putText(img,label, (50,60), cv2.FONT_HERSHEY_SIMPLEX,2, (0,0,255),2)    
+            cv2.putText(img,label, (50,60), cv2.FONT_HERSHEY_SCRIPT_COMPLEX,2, (120,10,200),3)    
         return img
 webrtc_streamer(
         key="object-detection",

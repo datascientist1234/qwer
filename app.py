@@ -34,7 +34,7 @@ class VideoTransformer(VideoTransformerBase):
         face_detect = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
     
         
-        class_labels = ['Angry','Fear','Happy','Neutral']
+        class_labels = ['Angry','Disgust','Fear','Happy','Neutral', 'Sad', 'Surprise']
 
 
         
@@ -57,7 +57,7 @@ class VideoTransformer(VideoTransformerBase):
             final_image = final_image/255.0
             prediction = my_model.predict(final_image)
             label=class_labels[prediction.argmax()]
-            cv2.putText(img,label, (50,60), cv2.FONT_HERSHEY_SCRIPT_COMPLEX,2, (120,10,200),3)    
+            cv2.putText(img,label, (50,60), cv2.FONT_HERSHEY_SCRIPT_COMPLEX,1, (0,0,255),2)    
         return img
 webrtc_streamer(
         key="object-detection",

@@ -51,13 +51,14 @@ class VideoTransformer(VideoTransformerBase):
             
             cv2.rectangle(img, (x,y),(x+w,y+h),(125,125,10), 2)
             img_color_crop = img[y:y+h,x:x+w]
-            img_color_crop = img[y:y+h,x:x+w]                        
-            final_image = cv2.resize(img_color_crop, (48,48))
+            #img_color_crop = img[y:y+h,x:x+w]                        
+            final_image = cv2.resize(img_color_crop, (48,48),interpolation=cv2.INTER_AREA)
             final_image = np.expand_dims(final_image, axis = 0)
-            final_image = final_image/255.0
-            prediction = my_model.predict(final_image)
+            final_image = final_image.astype('float')/255.0
+            final_image = img_to_array(final_image)
+            prediction = my_model.predict(final_image)[0]
             label=class_labels[prediction.argmax()]
-            cv2.putText(img,label, (50,60), cv2.FONT_HERSHEY_SCRIPT_COMPLEX,1, (0,0,255),2)    
+            cv2.putText(img,label, (50,60), cv2.FONT_HERSHEY_SIMPLEX,1, (0,0,255),2)    
         return img
 webrtc_streamer(
         key="object-detection",

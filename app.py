@@ -9,7 +9,12 @@ st.title('Face emotion recognition')
 import cv2
 import numpy as np
 import streamlit as st
-from streamlit_webrtc import VideoTransformerBase, webrtc_streamer
+from streamlit_webrtc import (
+    ClientSettings,
+    VideoTransformerBase,
+    WebRtcMode,
+    webrtc_streamer,
+)
 from keras.models import load_model
 
 
@@ -48,7 +53,13 @@ class VideoTransformer(VideoTransformerBase):
             label=class_labels[prediction.argmax()]
             cv2.putText(img,label, (50,60), cv2.FONT_HERSHEY_SCRIPT_COMPLEX,2, (120,10,200),3)    
         return img
-webrtc_streamer(key="example", video_transformer_factory=VideoTransformer)
+webrtc_streamer(
+        key="object-detection",
+        mode=WebRtcMode.SENDRECV,
+        client_settings=WEBRTC_CLIENT_SETTINGS,
+        video_transformer_factory=MobileNetSSDVideoTransformer,
+        async_transform=True,
+    )
 
 
 

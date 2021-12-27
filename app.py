@@ -56,7 +56,7 @@ class VideoTransformer(VideoTransformerBase):
             final_image = np.expand_dims(final_image, axis = 0)
             final_image = final_image.astype('float')/255.0
             final_image = img_to_array(final_image)
-            prediction = my_model.predict(final_image)[0]
+            prediction = my_model.predict(final_image)
             label=class_labels[prediction.argmax()]
             cv2.putText(img,label, (50,60), cv2.FONT_HERSHEY_SCRIPT_COMPLEX,2, (120,10,200),3)    
         return img

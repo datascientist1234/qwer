@@ -6,17 +6,12 @@ Created on Sat May  1 17:57:30 2021
 """
 import streamlit as st
 st.title('Face emotion recognition')
-import av
 import cv2
 import numpy as np
 import streamlit as st
-from aiortc.contrib.media import MediaPlayer
 from streamlit_webrtc import VideoTransformerBase, webrtc_streamer
-import matplotlib.pyplot as plt
-import tensorflow as tf
-from tensorflow import keras 
 from keras.models import load_model
-from tensorflow.keras import layers
+
 
 
 my_model=load_model('model.h5')

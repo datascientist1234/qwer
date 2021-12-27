@@ -63,7 +63,7 @@ webrtc_streamer(
         key="object-detection",
         mode=WebRtcMode.SENDRECV,
         client_settings=WEBRTC_CLIENT_SETTINGS,
-        video_transformer_factory=MobileNetSSDVideoTransformer,
+        video_transformer_factory=VideoTransformer,
         async_transform=True,
     )
 

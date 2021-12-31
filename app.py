@@ -51,7 +51,7 @@ class VideoTransformer(VideoTransformerBase):
             
             cv2.rectangle(img, (x,y+10),(x+w,y+h),(0,255,255), 3)
             img_color_crop = img[y:y+h,x:x+w]
-            img_color_crop = img[y:y+h,x:x+w]                        
+            #img_color_crop = img[y:y+h,x:x+w]                        
             final_image = cv2.resize(img_color_crop, (48,48))
             final_image = np.expand_dims(final_image, axis = 0)
             final_image = final_image/255.0

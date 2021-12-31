@@ -49,7 +49,7 @@ class VideoTransformer(VideoTransformerBase):
             y = y + 7
             h = h + 2
             
-            cv2.rectangle(img, (x,y),(x+w,y+h),(125,125,10), 2)
+            cv2.rectangle(img, (x,y),(x+w,y+h),(0,255,255), 3)
             img_color_crop = img[y:y+h,x:x+w]
             img_color_crop = img[y:y+h,x:x+w]                        
             final_image = cv2.resize(img_color_crop, (48,48))

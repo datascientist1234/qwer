@@ -27,7 +27,12 @@ from aiortc.contrib.media import MediaPlayer
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
 from tensorflow.keras.preprocessing.image import img_to_array
-from streamlit_webrtc import VideoTransformerBase, webrtc_streamer
+from streamlit_webrtc import (
+    ClientSettings,
+    VideoTransformerBase,
+    WebRtcMode,
+    webrtc_streamer,
+)
 
 
 
@@ -201,10 +206,19 @@ def main():
     if choice == "Play with camera":
         st.subheader("Real time face emotion detection")
         try:
-            webrtc_streamer(key="example", video_transformer_factory=VideoTransformer)
+            webrtc_streamer(
+        key="object-detection",
+        mode=WebRtcMode.SENDRECV,
+        client_settings=WEBRTC_CLIENT_SETTINGS,
+        video_transformer_factory=VideoTransformer,
+        async_transform=True,
+    )
         except Exception:
             st.error("oops there seems to be an error.")
 
-
+WEBRTC_CLIENT_SETTINGS = ClientSettings(
+    rtc_configuration={"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]},
+    media_stream_constraints={"video": True, "audio": True},
+)
 # calling main function
 main()

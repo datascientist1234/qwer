@@ -12,20 +12,19 @@ Files required to run this app:
 4. demo_images    (optional) if you want to see demo images
 '''
 
-
 # importing relevant libraries
-import os
-import av
+#import os
+#import av
 import cv2
-import time
-import tempfile
+#import time
+#import tempfile
 import numpy as np
-from PIL import Image
+#from PIL import Image
 import streamlit as st
 #from time import sleep
-from aiortc.contrib.media import MediaPlayer
+#from aiortc.contrib.media import MediaPlayer
 from tensorflow.keras.models import load_model
-from tensorflow.keras.preprocessing import image
+#from tensorflow.keras.preprocessing import image
 from tensorflow.keras.preprocessing.image import img_to_array
 from streamlit_webrtc import (
     ClientSettings,

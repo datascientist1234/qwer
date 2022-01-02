@@ -71,7 +71,7 @@ class VideoTransformer(VideoTransformerBase):
             label=emotions[prediction.argmax()]                           
             label_position = (x,y)
             cv2.putText(frame,label,label_position,cv2.FONT_HERSHEY_SIMPLEX,1,(0,255,255),3)  
-         return img   
+        return img   
                     
   '''      
         gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)

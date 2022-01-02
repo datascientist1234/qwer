@@ -73,7 +73,7 @@ class VideoTransformer(VideoTransformerBase):
             cv2.putText(frame,label,label_position,cv2.FONT_HERSHEY_SIMPLEX,1,(0,255,255),3)  
         return img   
                     
-  '''      
+'''  
         gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
         faces = faceCascade.detectMultiScale(gray)
         if faces is ():
@@ -93,7 +93,6 @@ class VideoTransformer(VideoTransformerBase):
             label_position = (x,y-10)
             cv2.putText(img,label,label_position,cv2.FONT_HERSHEY_SIMPLEX,1,(0,255,0),2)    
         return img
-
 
 '''
 

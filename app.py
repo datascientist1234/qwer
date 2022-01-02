@@ -50,30 +50,6 @@ emotion_labels = ['Angry','Disgust','Fear','Happy','Neutral', 'Sad', 'Surprise']
 class VideoTransformer(VideoTransformerBase):
     def transform(self, frame):
         img = frame.to_ndarray(format="bgr24")
-        gray = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)                               
-        faces = fc.detectMultiScale(gray)                              
-
-        for (x,y,w,h) in faces:
-           cv2.rectangle(frame,(x,y),(x+w,y+h),(0,255,255),2)                     
-           img_crop = gray[y:y+h,x:x+w]                                            
-           img_crop = cv2.resize(img_crop,(48,48))    
-
-        if faces is ():
-            print("no faces detected")
-            
-            
-        else:
-            final_img = img_crop.astype('float')/255.0                              
-            final_img = img_to_array(final_img)                                             
-            final_img = np.expand_dims(final_img,axis=0)                                   
-
-            prediction = model.predict(final_img)[0]                             
-            label=emotions[prediction.argmax()]                           
-            label_position = (x,y)
-            cv2.putText(frame,label,label_position,cv2.FONT_HERSHEY_SIMPLEX,1,(0,255,255),3)  
-        return img   
-                    
-'''  
         gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
         faces = faceCascade.detectMultiScale(gray)
         if faces is ():
@@ -94,7 +70,7 @@ class VideoTransformer(VideoTransformerBase):
             cv2.putText(img,label,label_position,cv2.FONT_HERSHEY_SIMPLEX,1,(0,255,0),2)    
         return img
 
-'''
+
 
 # main function
 webrtc_streamer(
@@ -105,8 +81,4 @@ webrtc_streamer(
         async_transform=True,
     )
         
-WEBRTC_CLIENT_SETTINGS = ClientSettings(
-    rtc_configuration={"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]},
-    media_stream_constraints={"video": True, "audio": True},
-)
 

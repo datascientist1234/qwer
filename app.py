@@ -58,7 +58,7 @@ class VideoTransformer(VideoTransformerBase):
         for (x,y,w,h) in faces:
             cv2.rectangle(img,(x,y),(x+w,y+h),(0,255,255),2)
             roi_gray = gray[y:y+h,x:x+w]
-            roi_gray = cv2.resize(roi_gray,(48,48),interpolation=cv2.INTER_AREA)
+            roi_gray = cv2.resize(roi_gray,(48,48))
 
             roi = roi_gray.astype('float')/255.0
             roi = img_to_array(roi)
